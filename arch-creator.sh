@@ -113,9 +113,9 @@ create_dirs(){
 bootstrap() {
 	step "Bootstraping Archlinux"
 
-	run_unless '[ -d "${ROOTFS_DIR}/bin" ]' "pacman -Qgq base base-devel" \
+	run_unless '[ -d "${ROOTFS_DIR}/bin" ]' "pacman -Sgq base base-devel" \
 		"| grep -v '^linux' | sort -u | xargs" \
-		"pacstrap -cd ${ROOTFS_DIR}"
+		"pacstrap -cd \"${ROOTFS_DIR}\""
 
 	run "cp /usr/lib/locale/locale-archive ${ROOTFS_DIR}/usr/lib/locale/locale-archive"
 
